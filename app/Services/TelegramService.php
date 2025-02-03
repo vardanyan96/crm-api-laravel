@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use danog\MadelineProto\API;
+use Revolt\EventLoop;
 class TelegramService
 {
     protected $api;
@@ -26,7 +27,12 @@ class TelegramService
 
     public function listen()
     {
-        // Новый способ запуска обработчика событий
-        API::startAndLoop(TelegramEventHandler::class);
+        // Регистрируем задачу в событийном цикле
+        EventLoop::queue(function () {
+            $this->api->start();
+        });
+
+        // Запускаем событийный цикл
+        EventLoop::run();
     }
 }
