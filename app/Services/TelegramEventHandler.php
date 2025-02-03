@@ -13,7 +13,7 @@ class TelegramEventHandler extends EventHandler
 
             // Логирование или обработка сообщения
             logger("Новое сообщение от {$userId}: {$message}");
-
+            echo "Новое сообщение от {$userId}: {$message}";
             // Пример ответа
             $this->messages->sendMessage([
                 'peer' => $userId,
