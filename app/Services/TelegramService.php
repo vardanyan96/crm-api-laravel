@@ -26,7 +26,7 @@ class TelegramService
 
     public function listen()
     {
-        $this->api->setEventHandler(TelegramEventHandler::class);
-        $this->api->loop();
+        // Новый способ запуска обработчика событий
+        API::startAndLoop(TelegramEventHandler::class);
     }
 }
